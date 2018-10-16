@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Registeration</title>
+</head>
+<body>
+	<h3>Admin Sign Up</h3>
+
+	<form action="{% url 'adminsignup' %}" method="post">
+		{% csrf_token %}
+		 {% for message in messages %}
+
+              <div class="alert alert-success">
+                  <a class="close" href="#" data-dismiss="alert">×</a>
+                   {{ message }}
+                  </div>
+            {% endfor %}
+
+	First Name: <input type="text" name="firstname"><br></br>
+	Last Name: <input type="text" name="lastname"><br></br>
+	Email: <input type="email" name="email"><br></br>
+	Password: <input type="password" name="password"><br></br>
+	Confirm: <input type="password" name="confirmpassword"><br></br>
+
+	<button type="submit"> Login </button>
+	<a href="{% url 'login' %}">Already have account Sing In</a>
+
+
+
+	</form>
+
+</body>
+</html>
