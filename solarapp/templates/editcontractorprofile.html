@@ -1,0 +1,20 @@
+<html>
+<body>
+	<p>Edit your profile </p>
+
+	<form action="{% url 'editcontprofile' %}" method="post">
+		{% csrf_token %}
+	Name: <input type="text" name="name" value="{{name}}" placeholder="Enter Name"><br></br>
+	Company: <input type="text" name="company" placeholder="Enter company name" value="{{ company }}"><br></br>
+	About Company:<input type="text" name="aboutcompany" placeholder="Enter  something about company " value="{{ aboutcompany }}"><br></br>
+	Address: <input type="text" name="address" placeholder="Enter address" value="{{ address }}"><br></br>
+	Number: <input type="text" name="number" value="{{number}}" placeholder="Enter number"><br></br>
+	State: <input type="text" name="state" value="{{state}}" placeholder="Enter State"><br></br>
+	City: <input type="text" name="city" value="{{city}}" placeholder=" Enter City"><br></br>
+	Country: <input type="text" name="country" value="{{country}}" placeholder="Enter Country"><br></br>
+	Zipcode: <input type="text" name="zipcode" value="{{zipcode}}" placeholder="Enter zipcode"><br></br>
+	<button type="submit"> Submit </button>
+
+	</form>
+</body>
+</html>

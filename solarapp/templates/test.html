@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script> -->
+  </head>
+  <body>
+	 <div>
+	     <h3> Enter an adress and press the button</h3>
+
+	    <input id="autocomplete" type="text" placeholder="Enter address here" />
+	    <button id="btn">Get LatLong</button>
+	    <div>
+	        <p>Latitude:
+	            <input type="text" id="latitude" readonly />
+	        </p>
+	        <p>Longitude:
+	            <input type="text" id="longitude" readonly />
+	        </p>
+	    </div>
+	</div>
+    <div id="map"></div>
+    <script>
+    var lat;
+    var lng;	
+    var placeSearch, autocomplete;
+	function showResult(result) {
+		lat = document.getElementById('latitude').value = result.geometry.location.lat();
+		lng = document.getElementById('longitude').value = result.geometry.location.lng();
+		initMap();
+	}
+
+	function getLatitudeLongitude(callback, address) {
+	// If adress is not supplied, use default value 'Ferrol, Galicia, Spain'
+	address = address || '225 Stanley St, Redwood City, CA 94062, USA';
+	// Initialize the Geocoder
+	geocoder = new google.maps.Geocoder();
+		if (geocoder) {
+			geocoder.geocode({
+			    'address': address
+			}, function (results, status) {
+			    if (status == google.maps.GeocoderStatus.OK) {
+			        callback(results[0]);
+			    }
+			});
+		}
+	}
+
+	// ON GET LATLONG BUTTON CLICK
+	var button = document.getElementById('btn');
+
+	button.addEventListener("click", function () {
+		var address = document.getElementById('autocomplete').value;
+		getLatitudeLongitude(showResult, address)
+	});
+
+
+	var map;
+
+	function initMap() {
+		// sshow the addpress in map according to lat lng
+		map = new google.maps.Map(document.getElementById('map'), {
+		  center: {lat: lat, lng: lng},
+		  zoom: 20,
+		  mapTypeId: 'satellite'
+		});
+
+		// Create the marker 
+		var marker = new google.maps.Marker({
+		    position:{lat: lat, lng: lng},
+		    map: map,
+		    title: 'Hello World!'
+	 	});
+
+	 	getSunNumber();
+	}
+
+	function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        // autocomplete.addListener('place_changed', fillInAddress);
+    }
+     function myFunction(){
+
+    	console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+    }
+    
+    
+    function getSunNumber(){
+    	$.ajax({
+				url: "http://api.sunnumber.com/v2/simple/37.4753334/-122.2510752/2?api_key=ddc64e68660c24634970f603fff2836d&suppress_response_codes=true&callback=myFunction",
+				type: "GET",
+				contentType: "text/javascript; charset=utf-8",
+				headers: {
+				   'Access-Control-Allow-Origin' : 'http://locahost/',
+				   'Access-Control-Allow-Credentials': true,
+				   },
+				dataType: 'jsonp',
+				crossDomain: true,
+				cache:false,
+				success: function(data){
+				console.log("new data");	
+				console.log(data);	
+				    // $("#results").append(html);
+				  }
+		});
+
+    }
+	getSunNumber();
+
+    </script>
+<!--   "http://api.sunnumber.com/v2/simple/112%20Stanley%20St,%20Redwood%20City,%20CA%2094062,%20USA/6?api_key=ddc64e68660c24634970f603fff2836d&suppress_response_codes=true&callback=myFunction"
+
+  http://api.sunnumber.com/v2/simple/33.449987/-112.09509700000001/2?api_key=ddc64e68660c24634970f603fff2836d&suppress_response_codes=true&callback=myFunction -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpavHXELJMJvIHifFPN6tBBiFSXKGpy2g&libraries=places&callback=initAutocomplete"
+    async defer></script>
+    <script src="./jquery.geocomplete.js"></script>
+
+  </body>
+</html>

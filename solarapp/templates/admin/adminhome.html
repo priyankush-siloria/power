@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<title>Addmin HomePage </title>
+
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+<h3>Home Page</h3>
+
+<a href="{% url 'logout' %}"style="float:right">logout</a>
+<h5>Contractor List</h5>
+
+{% csrf_token %}
+
+<table>
+
+  <tr>
+   
+  	<th>Name</th>
+    <th>Company</th>
+    <th>Address</th>
+    <th>View</th>
+  </tr>
+
+    {% for i in data %}
+    
+  <tr>
+
+
+    <td> {{ i.name }}</td>
+    <td> {{ i.companyname }}</td>
+    <td> {{ i.address }}</td>
+    <td> <a href="">view</a> <td>
+  
+  </tr>
+
+
+
+  
+  {% endfor %}
+
+  
+</table>
+
+</body>
+</html>
