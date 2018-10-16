@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+
+    <form action = "{% url 'contractorregister' %}" method="post" id="user-popup-newsletter" name="user-popup-newsletter" class="email-form">
+                   {% csrf_token %}
+                     {% for message in messages %}
+
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+
+                        {{ message }}
+
+                    </div>
+            {% endfor %}
+                      <h3>Contractor Sign up</h3>
+                      
+                      <div class="newsletter-form">
+                          <div class="input-box">
+                              <div class="row">
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+               
+                                    <input type="text" name="firstname" id="firstname" title="Contractor Sign up " placeholder="Enter your first name" class="input-text required-entry" required="" value=""><br></br>
+                                  </div> 
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="text" name="lastname" id="lastname" title="Contractor Sign up " placeholder="Enter your last name" class="input-text required-entry" required="" value=""> <br></br>
+                                  </div> 
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="text" name="address1" id="address1" title=" Contractor Sign up " placeholder="Address line 1" class="input-text required-entry" value="" required=""> <br></br>
+                                  </div> 
+                                </div>
+
+                                  <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="text" name="companyname" id="companyname" title="Contractor Sign up " placeholder="companyname" class="input-text required-entry" value="" required=""> <br></br>
+                                  </div> 
+                                  
+                                </div>
+
+                                  <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="text" name="aboutcompany" id="aboutcompany" title="Contractor Sign up " placeholder="About company" class="input-text required-entry"  required=""> <br></br>
+                                  </div> 
+                                  </div>
+                                <div class="col-sm-6">
+                                 
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="text" name="city" id="city" title="Contractor Sign up " placeholder="Enter your city" class="input-text required-entry" value="" required=""> <br></br>
+                                  </div> 
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="text" name="state" id="state" title="Contractor Sign up " placeholder="Enter your state" class="input-text required-entry" value="" required=""> <br></br>
+                                  </div> 
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="text" name="zip" id="zip" title="Contractor Sign up " placeholder="Enter your zip" class="input-text required-entry" value="" required=""> <br></br>
+                                  </div> 
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="text" name="country" id="country" title="Contractor Sign up " placeholder="Enter your country" class="input-text required-entry" value="" required=""> <br></br>
+                                  </div> 
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                     <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="text" name="number" id="number"  minlength="10" maxlength="15" title="Contractor Sign up " placeholder="Enter your number" class="input-text required-entry" value="" required=""> <br></br>
+                                  </div> 
+                                </div>
+                                    <input type="email" name="email" id="email" title="Contractor Sign up" placeholder="Enter your email address" class="input-text required-entry validate-email" required="" value=""><br></br>
+                                  </div> 
+
+                                </div>
+
+                                  <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="password" name="password" id="password" title="Contractor Sign up " placeholder="Enter your password" class="input-text required-entry" required="" required  minlength="8"> <br></br>
+                                  </div> 
+                                </div>
+
+                                  <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="password" name="cpassword" id="cpassword" title="Contractor Sign up" placeholder="Confirm your password" class="input-text required-entry"> <br></br>
+                                  </div> 
+                                </div>
+
+                              <button type = "submit" name=""> Register</button>
+                              <a href="{% url 'login' %}"> Already have account</a>
+
+
+</body>
+</html>
