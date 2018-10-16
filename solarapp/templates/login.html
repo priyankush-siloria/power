@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+	{% for message in messages %}
+
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+
+                        {{ message }}
+
+                    </div>
+            {% endfor %}
+
+	<form action="{% url 'login' %}" method = "post">
+		{% csrf_token %}
+	Email <input type="email" name="email" placeholder=" Enter your Email" required=""><br></br>
+	Password <input type="password" name="password" placeholder="Enter your password" required=""><br></br>
+	<button type="submit">Login</button>
+	<a href="{% url 'register' %}">Sing Up </a>
+	</form>
+</body>
+</body>
+</html>
